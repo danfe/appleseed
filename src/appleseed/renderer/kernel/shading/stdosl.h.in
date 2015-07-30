@@ -521,6 +521,8 @@ closure color as_subsurface(color reflectance, color mean_free_path)
     return as_subsurface("directional", reflectance, mean_free_path);
 }
 
+closure color as_nop_layer(normal N, closure color base) BUILTIN;
+
 /********************************/
 // Standard OSL closures
 
@@ -569,7 +571,7 @@ closure color oren_nayar(normal N, float roughness) BUILTIN;
 
 closure color phong(normal N, float exponent)
 {
-    return as_ashikhmin_shirley(N, vector(0), color(0), color(1), exponent, exponent);
+    return as_ashikhmin_shirley(N, vector(0), color(0), color(1), exponent, exponent, 1.0);
 }
 
 // Renderer state
